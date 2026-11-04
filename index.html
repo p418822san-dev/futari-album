@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ふたりアルバム</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="cover">
+    <span class="tape tape-pink cover-tape-l" aria-hidden="true"></span>
+    <span class="tape tape-mint cover-tape-r" aria-hidden="true"></span>
+    <h1 class="cover-title">ふたりアルバム</h1>
+    <p class="cover-sub">ふたりの思い出を、一枚ずつ。</p>
+    <p class="cover-count" id="count"></p>
+    <div class="cover-actions">
+      <button type="button" class="btn btn-primary" id="add-btn">＋ 写真・動画を貼る</button>
+      <button type="button" class="btn btn-ghost" id="export-btn" title="メタデータ（タイトル・コメント・日付など）を JSON で書き出します">記録を書き出す</button>
+    </div>
+    <input type="file" id="file-input" accept="image/*,video/*" multiple hidden>
+
+    <!-- Google Drive 保存（backend: "gdrive"）のときだけ表示する認証バー -->
+    <div class="auth-bar" id="auth-bar" hidden>
+      <p class="auth-status" id="auth-status" role="status"></p>
+      <div class="auth-actions">
+        <button type="button" class="btn btn-small btn-primary" id="signin-btn" hidden>Google でサインイン</button>
+        <button type="button" class="btn btn-small btn-ghost" id="local-mode-btn" hidden>この端末だけで試す（ローカル保存）</button>
+        <button type="button" class="btn btn-small btn-ghost" id="drive-mode-btn" hidden>Drive 保存に戻す</button>
+        <button type="button" class="btn btn-small btn-ghost" id="signout-btn" hidden>サインアウト</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="empty" id="empty" hidden>
+      <p class="empty-title" id="empty-title">まだ何も貼られていません</p>
+      <p id="empty-text">「＋ 写真・動画を貼る」を押すか、ここに写真をドラッグしてください。</p>
+    </div>
+    <div id="album"></div>
+  </main>
+
+  <div class="drop-overlay" id="drop-overlay" hidden>
+    <p>ここに落として貼りつけ</p>
+  </div>
+
+  <dialog class="editor" id="editor" aria-labelledby="editor-heading">
+    <form id="editor-form" method="dialog" novalidate>
+      <div class="editor-head">
+        <h2 id="editor-heading">アルバムに貼る</h2>
+        <span class="editor-progress" id="editor-progress"></span>
+      </div>
+      <div class="editor-preview" id="editor-preview"></div>
+
+      <label class="field">
+        <span class="field-label">タイトル</span>
+        <input type="text" id="f-title" maxlength="60" placeholder="例：はじめての鎌倉" autocomplete="off">
+      </label>
+      <label class="field">
+        <span class="field-label">ひとこと</span>
+        <textarea id="f-comment" rows="2" maxlength="300" placeholder="例：しらす丼おいしかったね"></textarea>
+      </label>
+      <label class="field">
+        <span class="field-label">日付</span>
+        <input type="date" id="f-date" required>
+        <small class="field-hint" id="f-date-hint"></small>
+      </label>
+
+      <div class="editor-actions">
+        <button type="button" class="btn btn-danger" id="delete-btn" hidden>はがす</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn btn-ghost" id="cancel-btn">やめる</button>
+        <button type="button" class="btn btn-ghost" id="skip-btn" hidden>この1枚は飛ばす</button>
+        <button type="button" class="btn btn-ghost" id="save-all-btn" hidden>残りはこのまま全部貼る</button>
+        <button type="submit" class="btn btn-primary" id="save-btn">貼る・保存</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

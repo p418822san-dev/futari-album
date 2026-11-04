@@ -1,0 +1,26 @@
+[
+  {
+    "id": "6f1c2a9e-3b7d-4c1e-9a52-1d0f8e7b6a01",
+    "title": "はじめての鎌倉",
+    "comment": "しらす丼おいしかったね",
+    "date": "2026-11-03",
+    "kind": "photo",
+    "createdAt": "2026-11-04T10:15:00.000Z",
+    "fileName": "IMG_0123.jpg",
+    "mimeType": "image/jpeg",
+    "size": 2483011,
+    "mediaRef": "6f1c2a9e-3b7d-4c1e-9a52-1d0f8e7b6a01"
+  },
+  {
+    "id": "b2d4e6f8-1a3c-4e5f-8b9d-2c4e6a8b0d02",
+    "title": "紅葉トンネル",
+    "comment": "",
+    "date": "2026-10-18",
+    "kind": "video",
+    "createdAt": "2026-11-04T10:16:30.000Z",
+    "fileName": "IMG_0098.MOV",
+    "mimeType": "video/quicktime",
+    "size": 18734522,
+    "mediaRef": "b2d4e6f8-1a3c-4e5f-8b9d-2c4e6a8b0d02"
+  }
+]
